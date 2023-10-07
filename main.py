@@ -4,6 +4,8 @@ import glob
 import os
 import sarc
 from msbt import msbt_to_json
+import json
+from modifyText import modifyText
 
 # * Confirm that the user wants to begin *
 def askBegin():
@@ -80,5 +82,34 @@ for root, dirs, files in os.walk(sarcOutputFolder):
             msbtFilePath = os.path.join(root, file)
             
             msbt_to_json(msbtFilePath, jsonOutputFolder)
+
+print('Done!')
+
+# * Modify the JSON files *
+print('Modifying the JSON files...')
+
+# Varisbles
+modifiedJsonFolder = '../modified/json/'
+
+# Create the output folder if it doesn't exist
+if not os.path.exists(modifiedJsonFolder):
+    os.makedirs(modifiedJsonFolder)
+
+# Modify the JSON files
+for root, dirs, files in os.walk(jsonOutputFolder):
+    for file in files:
+        if file.endswith('.json'):
+            jsonFilePath = os.path.join(root, file)
+            
+            with open(jsonFilePath, 'r', encoding='utf-8') as jsonFile:
+                jsonData = jsonFile.read()
+            
+            dictData = json.loads(jsonData)
+
+            for key in dictData:
+                dictData[key] = modifyText(dictData[key])
+
+            with open(jsonFilePath.replace('original', 'modified', 1), 'w', encoding='utf-8') as modifiedJsonFile:
+                json.dump(dictData, modifiedJsonFile, indent=2, ensure_ascii=False)
 
 print('Done!')
