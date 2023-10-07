@@ -161,3 +161,4 @@ cython_debug/
 
 # The file I'm using to test
 battleHill.msbt
+battleHill.json

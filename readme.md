@@ -128,3 +128,8 @@ This code is provided under the GNU GPL v3 license. It is attached in this repos
 
 ## Contribution
 If you would like to contribute to this project, feel free to fork the repository and submit pull requests. We welcome contributions from the community to make this tool better.
+
+## Credits
+
+### `msbt.py` Functionality
+Most of the functionality in the `msbt.py` file is based on (literally copied from) the [MSBT2JSON project](https://github.com/FURI-J/msbt2json). This project provides a JavaScript MSBT2JSON converter, and I have adapted it for use in this Python project. I would like to extend my thanks to the creators of the MSBT2JSON project for their valuable work.

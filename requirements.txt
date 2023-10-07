@@ -1,4 +1,6 @@
 zstandard
 sarc
 json
-binascii
+struct
+os
+glob

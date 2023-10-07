@@ -3,7 +3,7 @@ import zstandard as zstd
 import glob
 import os
 import sarc
-import json
+from msbt import msbt_to_json
 
 # * Confirm that the user wants to begin *
 def askBegin():
@@ -75,6 +75,10 @@ if not os.path.exists(jsonOutputFolder):
 
 # Convert to JSON
 for root, dirs, files in os.walk(sarcOutputFolder):
-    print('no MSBT function yet ;p')
+    for file in files:
+        if file.endswith('.msbt'):
+            msbtFilePath = os.path.join(root, file)
+            
+            msbt_to_json(msbtFilePath, jsonOutputFolder)
 
 print('Done!')
